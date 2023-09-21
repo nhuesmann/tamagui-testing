@@ -71,7 +71,7 @@ export const palettes = (() => {
 
   // const darkPalettes = objectFromEntries(
   //   objectKeys(colorTokens.dark).map(
-  //     (key) => [`dark${key}`, getColorPalette(colorTokens.dark[key], darkColor)] as const
+  //     (key) => [`dark_${key}`, getColorPalette(colorTokens.dark[key], darkColor)] as const
   //   )
   // );
 

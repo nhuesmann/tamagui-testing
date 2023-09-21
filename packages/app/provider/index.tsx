@@ -1,17 +1,22 @@
-import { CustomToast, TamaguiProvider, TamaguiProviderProps, ToastProvider } from '@benable/ui';
+import {
+  CustomToast,
+  TamaguiProvider,
+  TamaguiProviderProps,
+  Theme,
+  ToastProvider,
+} from '@benable/ui';
+import { useColorScheme } from 'react-native';
 
-// import { useColorScheme } from 'react-native';
 import config from '../tamagui.config';
 import { ToastViewport } from './ToastViewport';
 
 export function Provider({ children, ...rest }: Omit<TamaguiProviderProps, 'config'>) {
-  // const scheme = useColorScheme();
+  const scheme = useColorScheme();
   return (
     <TamaguiProvider
       config={config}
       disableInjectCSS
-      // defaultTheme={scheme === 'dark' ? 'dark' : 'light'}
-      defaultTheme="light"
+      defaultTheme={scheme === 'dark' ? 'dark' : 'light'}
       {...rest}
     >
       <ToastProvider
@@ -24,8 +29,7 @@ export function Provider({ children, ...rest }: Omit<TamaguiProviderProps, 'conf
           ]
         }
       >
-        {children}
-
+        <Theme name="light">{children}</Theme>
         <CustomToast />
         <ToastViewport />
       </ToastProvider>

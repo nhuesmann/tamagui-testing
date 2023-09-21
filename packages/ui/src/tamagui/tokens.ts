@@ -1,20 +1,26 @@
 import {
-  blue,
+  // blue,
   // blueDark,
   gray,
   // grayDark,
-  green,
+  // green,
   // greenDark,
-  mint,
-  // mintDark,
-  orange,
+  // orange,
   // orangeDark,
-  red,
+  // pink,
+  // pinkDark,
+  // purple,
+  // purpleDark,
+  // red,
   // redDark,
-  yellow,
+  // yellow,
   // yellowDark,
 } from '@tamagui/colors';
-import { createTokens, Variable } from '@tamagui/web';
+// import { createTokens, Variable } from '@tamagui/web';
+import { createTokens } from '@tamagui/web';
+
+import { benableColors } from './colors';
+import { sizes } from './sizes'; // ? Trying to add tailwind style size increments bc I don't quite understand the default Tamagui ones
 
 // should roughly map to button/input etc height at each level
 // fonts should match that height/lineHeight at each stop
@@ -104,20 +110,33 @@ export const zIndex = {
 
 export const colorTokens = {
   light: {
-    blue: blue,
+    // Leaving for Tamagui
     gray: gray,
-    green: green,
-    orange: orange,
-    mint,
-    red: red,
-    yellow: yellow,
+    // Benable colors
+    neutral: benableColors.neutral,
+    purple: benableColors.purple,
+    red: benableColors.red,
+    orange: benableColors.orange,
+    green: benableColors.green,
+    blue: benableColors.blue,
   },
+  // light: {
+  //   blue: blue,
+  //   gray: gray,
+  //   green: green,
+  //   orange: orange,
+  //   pink: pink,
+  //   purple: purple,
+  //   red: red,
+  //   yellow: yellow,
+  // },
   // dark: {
   //   blue: blueDark,
   //   gray: grayDark,
   //   green: greenDark,
   //   orange: orangeDark,
-  //   mint: mintDark,
+  //   pink: pinkDark,
+  //   purple: purpleDark,
   //   red: redDark,
   //   yellow: yellowDark,
   // },
@@ -128,34 +147,38 @@ export const colorTokens = {
 //   ...colorTokens.dark.gray,
 //   ...colorTokens.dark.green,
 //   ...colorTokens.dark.orange,
-//   ...colorTokens.dark.mint,
+//   ...colorTokens.dark.pink,
+//   ...colorTokens.dark.purple,
 //   ...colorTokens.dark.red,
 //   ...colorTokens.dark.yellow,
 // };
 
 export const lightColors = {
-  ...colorTokens.light.blue,
+  // Leaving for Tamagui
   ...colorTokens.light.gray,
-  ...colorTokens.light.green,
-  ...colorTokens.light.orange,
-  ...colorTokens.light.mint,
+  // Benable colors
+  ...colorTokens.light.neutral,
+  ...colorTokens.light.purple,
   ...colorTokens.light.red,
-  ...colorTokens.light.yellow,
+  ...colorTokens.light.orange,
+  ...colorTokens.light.green,
+  ...colorTokens.light.blue,
 };
 
-export const color = {
-  ...postfixObjKeys(lightColors, 'Light'),
-  // ...postfixObjKeys(darkColors, 'Dark'),
-};
+// export const color = {
+//   ...postfixObjKeys(lightColors, 'Light'),
+//   // ...postfixObjKeys(darkColors, 'Dark'),
+// };
+export const color = lightColors;
 
-function postfixObjKeys<A extends { [key: string]: Variable<string> | string }, B extends string>(
-  obj: A,
-  postfix: B
-): {
-  [Key in `${keyof A extends string ? keyof A : never}${B}`]: Variable<string> | string;
-} {
-  return Object.fromEntries(Object.entries(obj).map(([k, v]) => [`${k}${postfix}`, v])) as any;
-}
+// function postfixObjKeys<A extends { [key: string]: Variable<string> | string }, B extends string>(
+//   obj: A,
+//   postfix: B
+// ): {
+//   [Key in `${keyof A extends string ? keyof A : never}${B}`]: Variable<string> | string;
+// } {
+//   return Object.fromEntries(Object.entries(obj).map(([k, v]) => [`${k}${postfix}`, v])) as any;
+// }
 
 export const radius = {
   0: 0,
@@ -176,10 +199,19 @@ export const radius = {
 
 export const tokens = createTokens({
   color,
-  radius,
+  radius: {
+    ...radius,
+    ...sizes,
+  },
   zIndex,
-  space,
-  size,
+  space: {
+    ...space,
+    ...sizes,
+  },
+  size: {
+    ...size,
+    ...sizes,
+  },
 
   // testing
   icon: {

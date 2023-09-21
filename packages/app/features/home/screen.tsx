@@ -19,9 +19,11 @@ export function HomeScreen() {
   });
 
   return (
-    <YStack f={1} jc="center" ai="center" p="$4" space>
-      <YStack space="$4" maw={600}>
-        <H1 ta="center">Welcome to Tamagui.</H1>
+    <YStack f={1} jc="center" ai="center" p="$tw-4.5" space bc="white">
+      <YStack space="$tw-4.5" maw={600}>
+        <H1 ta="center" col="$purple">
+          Welcome to Tamagui.
+        </H1>
         <Paragraph ta="center">
           Here's a basic starter to show navigating from one screen to another. This screen uses the
           same code on Next.js and React Native.
@@ -62,7 +64,9 @@ function SheetDemo() {
   return (
     <>
       <Button
-        size="$6"
+        // size="$6"
+        size="$tw-16"
+        scaleIcon={1.7}
         icon={open ? ChevronDown : ChevronUp}
         circular
         onPress={() => setOpen((x) => !x)}
@@ -77,17 +81,20 @@ function SheetDemo() {
         onPositionChange={setPosition}
         dismissOnSnapToBottom
       >
-        <Sheet.Overlay animation="lazy" enterStyle={{ opacity: 0 }} exitStyle={{ opacity: 0 }} />
+        <Sheet.Overlay animation="quick" enterStyle={{ opacity: 0 }} exitStyle={{ opacity: 0 }} />
         <Sheet.Frame ai="center" jc="center">
           <Sheet.Handle />
           <Button
-            size="$6"
+            // size="$6"
+            size="$tw-16"
+            scaleIcon={1.7}
             circular
             icon={ChevronDown}
             onPress={() => {
               setOpen(false);
               toast.show('Sheet closed!', {
                 message: 'Just showing how toast works...',
+                duration: 2000,
               });
             }}
           />
